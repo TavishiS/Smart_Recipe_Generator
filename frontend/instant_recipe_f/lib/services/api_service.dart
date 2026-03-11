@@ -3,7 +3,9 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
 
-  static const String baseUrl = "http://localhost:8000";
+  // static const String baseUrl = "http://localhost:8000";
+  // static const String baseUrl = "https://smart-recipe-generator-4vdq.onrender.com";
+  static const String baseUrl = "https://king-unretired-prepiously.ngrok-free.dev";
 
   static Future<List<dynamic>?> generateRecipes(
       Map<String, dynamic> data) async {

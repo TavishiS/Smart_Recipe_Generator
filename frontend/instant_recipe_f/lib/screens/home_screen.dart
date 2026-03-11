@@ -317,9 +317,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Center(
                 child: ElevatedButton(
-                  onPressed: generateRecipes,
-                  child: const Text("Generate Recipes"),
-                ),
+                      onPressed: () {
+                        print("Generate button clicked");
+                        generateRecipes();
+                      },
+                      child: const Text("Generate Recipes"),
+                    ),
               ),
 
               const SizedBox(height: 20),

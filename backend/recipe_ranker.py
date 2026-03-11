@@ -10,12 +10,14 @@ def ingredient_match_score(recipe, user_ingredients):
 
     return (match / len(user_ingredients)) * 30
 
+
 def health_score(recipe, healthy_pref):
 
     if healthy_pref:
         return 40
 
     return 10
+
 
 def difficulty_score(recipe, user_pref):
 
@@ -24,12 +26,36 @@ def difficulty_score(recipe, user_pref):
 
     return 5
 
+
+# NEW helper function (prevents crash)
+def extract_time(recipe):
+
+    t = recipe["time"]
+
+    if isinstance(t, int):
+        return t
+
+    if isinstance(t, str):
+        try:
+            return int(t.split()[0])
+        except:
+            return 30
+
+    return 30
+
+
 def time_score(recipe, user_pref):
 
-    if user_pref == "fast" and int(recipe["time"].split()[0]) <= 20:
+    time_val = extract_time(recipe)
+
+    if user_pref == "fast" and time_val <= 20:
         return 15
 
+    if user_pref == "medium" and time_val <= 40:
+        return 10
+
     return 5
+
 
 def score_recipe(recipe, user_data):
 
@@ -56,6 +82,7 @@ def score_recipe(recipe, user_data):
     )
 
     return score
+
 
 # function to rank recipes
 def rank_recipes(recipes, user_data):
